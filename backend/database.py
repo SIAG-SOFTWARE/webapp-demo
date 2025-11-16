@@ -8,7 +8,11 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./siag_web_demo.db")
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"check_same_thread": False}
+)
+
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
@@ -19,3 +23,4 @@ def init_db():
         print("📦 Database initialized.")
     except Exception as e:
         print("❌ Database init error:", e)
+
