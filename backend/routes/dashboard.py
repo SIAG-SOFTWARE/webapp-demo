@@ -4,6 +4,8 @@ from .. import database
 router = APIRouter(prefix="/dashboard", tags=["dashboard"])
 
 # Access demo: check simple bearer token against in-memory store in auth module
+# Demo only: token resets on server restart (in-memory).
+# Replace with JWT or DB-backed token for production deployments.
 from .auth import _token_store
 
 def get_current_user(authorization: str = Header(None)):
