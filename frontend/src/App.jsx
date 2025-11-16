@@ -21,6 +21,8 @@ export default function App(){
     }
   }
 
+const [loading, setLoading] = useState(false);
+  
   return (
     <div style={{fontFamily:"sans-serif", padding:20}}>
       <h1>SIAG Webapp Demo</h1>
