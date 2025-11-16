@@ -5,7 +5,7 @@ import secrets
 
 from .. import models, schemas, database
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["bcrypt"], bcrypt__rounds=12)
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 # simple token store (demo). Replace with JWT or DB-backed tokens later.
