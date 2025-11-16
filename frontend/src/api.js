@@ -8,6 +8,7 @@ export async function login(username, password) {
     },
     body: JSON.stringify({ username, password })
   });
+
   if (!res.ok) throw new Error("Login failed");
   return res.json();
 }
@@ -20,6 +21,8 @@ export async function getStats(token) {
       "Authorization": `Bearer ${token}` 
     }
   });
+
   if (!res.ok) throw new Error("Fetch failed");
   return res.json();
 }
+
