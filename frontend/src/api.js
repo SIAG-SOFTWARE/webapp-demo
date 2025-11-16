@@ -17,3 +17,8 @@ export async function getStats(token) {
   if (!res.ok) throw new Error("Fetch failed");
   return res.json();
 }
+
+headers: {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${token}`
+}
