@@ -1,7 +1,6 @@
 version: "3.8"
 services:
-  backend:
-    backend:
+ backend:
   build:
     context: ./backend
   command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
