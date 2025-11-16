@@ -1,22 +1,20 @@
 version: "3.8"
+
 services:
+  backend:
+    build:
+      context: ./backend
+    command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
 
- backend:
-  build:
-    context: ./backend
-  command: uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-  volumes:
-    - ./backend:/app
-  ports:
-    - "8000:8000"
-  restart: unless-stopped
-
- frontend:
-  build: ./frontend
-  command: sh -c "npm install && npm run dev -- --host"
-  volumes:
-    - ./frontend:/app
-  ports:
-    - "5173:5173"
-
-Note: The builds expect a Dockerfile in each folder if you actually want to Dockerize. For local development, Docker is not necessary.
+  frontend:
+    build: ./frontend
+    command: sh -c "npm install && npm run dev -- --host"
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
