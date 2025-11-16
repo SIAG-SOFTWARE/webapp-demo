@@ -7,12 +7,13 @@ export default function App(){
   const [token, setToken] = useState("");
   const [stats, setStats] = useState(null);
   const [err, setErr] = useState("");
-  const [loading, setLoading] = useState(false);  // ✔️ agregado
+  const [loading, setLoading] = useState(false);
 
   async function handleLogin(e){
     e.preventDefault();
     setErr("");
-    setLoading(true);  // ✔️ agregado
+    setLoading(true);
+
     try {
       const { access_token } = await login(user, pw);
       setToken(access_token);
@@ -21,7 +22,7 @@ export default function App(){
     } catch (e) {
       setErr(e.message);
     } finally {
-      setLoading(false);  // ✔️ agregado
+      setLoading(false);
     }
   }
 
@@ -29,7 +30,7 @@ export default function App(){
     <div style={{fontFamily:"sans-serif", padding:20}}>
       <h1>SIAG Webapp Demo</h1>
 
-      {loading && <p>Loading...</p>}  // ✔️ agregado
+      {loading && <p>Loading...</p>}
 
       {!token ? (
         <form onSubmit={handleLogin}>
@@ -43,6 +44,7 @@ export default function App(){
           <pre>{JSON.stringify(stats, null, 2)}</pre>
         </div>
       )}
+
       {err && <p style={{color:"red"}}>{err}</p>}
     </div>
   );
