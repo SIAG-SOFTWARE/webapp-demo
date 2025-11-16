@@ -2,17 +2,17 @@ from fastapi import FastAPI
 from .database import init_db
 from .routes import auth, dashboard
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(
     title="SIAG Web Demo",
     description="Full-stack demo showcasing SIAG Software development capabilities.",
     version="1.0.0"
 )
 
-from fastapi.middleware.cors import CORSMiddleware
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # o reemplazar con tu dominio real
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
