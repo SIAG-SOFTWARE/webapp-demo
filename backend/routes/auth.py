@@ -37,4 +37,5 @@ def login(payload: schemas.UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     token = secrets.token_hex(16)
     _token_store[token] = user.username
-    return {"access_token": token}
+    return {"access_token": token, "token_type": "bearer"}
+
