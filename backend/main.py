@@ -2,7 +2,11 @@ from fastapi import FastAPI
 from .database import init_db
 from .routes import auth, dashboard
 
-app = FastAPI(title="SIAG Web Demo")
+app = FastAPI(
+    title="SIAG Web Demo",
+    description="Full-stack demo showcasing SIAG Software development capabilities.",
+    version="1.0.0"
+)
 
 from fastapi.middleware.cors import CORSMiddleware
 
