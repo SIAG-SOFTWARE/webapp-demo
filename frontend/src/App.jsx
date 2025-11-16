@@ -7,28 +7,30 @@ export default function App(){
   const [token, setToken] = useState("");
   const [stats, setStats] = useState(null);
   const [err, setErr] = useState("");
+  const [loading, setLoading] = useState(false);  // ✔️ agregado
 
   async function handleLogin(e){
-  e.preventDefault();
-  setErr("");
-  setLoading(true);  // ⬅️ acá
-  try {
-    const { access_token } = await login(user, pw);
-    setToken(access_token);
-    const data = await getStats(access_token);
-    setStats(data);
-  } catch (e) {
-    setErr(e.message);
-  } finally {
-    setLoading(false);  // ⬅️ y acá
+    e.preventDefault();
+    setErr("");
+    setLoading(true);  // ✔️ agregado
+    try {
+      const { access_token } = await login(user, pw);
+      setToken(access_token);
+      const data = await getStats(access_token);
+      setStats(data);
+    } catch (e) {
+      setErr(e.message);
+    } finally {
+      setLoading(false);  // ✔️ agregado
+    }
   }
-}
 
-const [loading, setLoading] = useState(false);
-  
   return (
     <div style={{fontFamily:"sans-serif", padding:20}}>
       <h1>SIAG Webapp Demo</h1>
+
+      {loading && <p>Loading...</p>}  // ✔️ agregado
+
       {!token ? (
         <form onSubmit={handleLogin}>
           <div><input placeholder="username" value={user} onChange={e=>setUser(e.target.value)} /></div>
