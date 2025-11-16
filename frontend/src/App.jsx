@@ -9,17 +9,20 @@ export default function App(){
   const [err, setErr] = useState("");
 
   async function handleLogin(e){
-    e.preventDefault();
-    setErr("");
-    try {
-      const { access_token } = await login(user, pw);
-      setToken(access_token);
-      const data = await getStats(access_token);
-      setStats(data);
-    } catch (e) {
-      setErr(e.message);
-    }
+  e.preventDefault();
+  setErr("");
+  setLoading(true);  // ⬅️ acá
+  try {
+    const { access_token } = await login(user, pw);
+    setToken(access_token);
+    const data = await getStats(access_token);
+    setStats(data);
+  } catch (e) {
+    setErr(e.message);
+  } finally {
+    setLoading(false);  // ⬅️ y acá
   }
+}
 
 const [loading, setLoading] = useState(false);
   
