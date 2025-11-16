@@ -14,4 +14,8 @@ Base = declarative_base()
 
 def init_db():
     from . import models
-    Base.metadata.create_all(bind=engine)
+    try:
+        Base.metadata.create_all(bind=engine)
+        print("📦 Database initialized.")
+    except Exception as e:
+        print("❌ Database init error:", e)
